@@ -34,13 +34,12 @@ public class TracingMessagingMessageListenerAdapter extends MessagingMessageList
 
   @Override
   public void onMessage(final Message jmsMessage, final Session session) throws JMSException {
-    TracingMessageListener listener = new TracingMessageListener(
-        new MessageListener() {
-          @Override
-          public void onMessage(Message message) {
-            onMessageInternal(message, session);
-          }
-        }, tracer);
+    TracingMessageListener listener = new TracingMessageListener(new MessageListener() {
+      @Override
+      public void onMessage(Message message) {
+        onMessageInternal(message, session);
+      }
+    }, tracer);
     listener.onMessage(jmsMessage);
   }
 
